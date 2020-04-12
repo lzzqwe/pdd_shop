@@ -85,7 +85,9 @@
     methods: {
       /* 3.初始化滚动*/
       _initBScroll() {
-        this.leftScroll = new BScroll('.menu-wrapper', {})
+        this.leftScroll = new BScroll('.menu-wrapper', {
+          click: true
+        })
         this.rightScroll = new BScroll('.shop-wrapper', {
           probeType: 3 // 6.1 监听滚动事件
         })
