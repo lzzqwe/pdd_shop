@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import App from './App'
 import store from './store'
+import '@/common/js/vconsole.min.js'
+
+import VConsole from 'vconsole';
+
 
 // minu-UI
 import 'mint-ui/lib/style.css'
@@ -35,7 +39,7 @@ Vue.use(VueLazyLoad, {
     loading: loading,
     attempt: 1
 })
-
+Vue.prototype.$vconsole = new VConsole();
 new Vue({
     el: '#app',
     router,

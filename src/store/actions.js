@@ -32,6 +32,7 @@ export default {
     // 1. 获取首页轮播图
     async reqHomeCasual({ commit }, callback) {
         const result = await getHomeCasual()
+        console.log(result)
         commit(HOME_CASUAL, { homecasual: result.message })
         callback && callback()
     },

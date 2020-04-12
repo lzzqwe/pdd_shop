@@ -23,7 +23,8 @@
         "vuex-persistedstate": "^2.5.4",
         "vue-lazyload": "^1.2.6",
         "amfe-flexible": "^2.2.1",
-        "postcss-pxtorem": "^4.0.1"
+        "postcss-pxtorem": "^4.0.1",
+        "vconsole": "^3.2.2"
     },
     "devDependencies": {
         "@vue/cli-plugin-babel": "^4.3.0",

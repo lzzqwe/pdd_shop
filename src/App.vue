@@ -18,8 +18,9 @@
     //   this.$store.dispatch('getUserInfo')
     // },
     created() {
-     if(localStorage.ele) {
-        const decode = jwt_decode(localStorage.ele)
+     if(localStorage.getItem("ele")) {
+        const decode = jwt_decode(localStorage.getItem("ele"))
+        console.log(decode)
         this.syncUserInfo(decode)
      }
       // this.$store.dispatch('getUserInfo')

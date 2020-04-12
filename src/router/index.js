@@ -35,63 +35,59 @@ import MeDetail from '@/pages/Me/MeDetail'
 Vue.use(VueRouter)
 
 export default new VueRouter({
-  mode: 'history',
-  routes: [
-    {
-      path: '/',
-      meta: {showBottomTabBar: true},
-      redirect: '/home'
-    },
-    {
-      path: '/home',
-      component: Home,
-      children: [
-        {path: 'hot', component: Hot,meta: {showBottomTabBar: true}},
-        {path: 'box', component: Box},
-        {path: 'dress', component: Dress},
-        {path: 'food', component: Food},
-        {path: 'general', component: General},
-        {path: 'man', component: Man},
-        {path: 'ele', component: Ele},
-        {path: 'mbaby', component: Mbaby},
-        {path: 'shirt', component: Shirt},
-        {path: '/home', redirect: '/home/hot'}
-      ]
-    },
-    {
-      path: '/recommend',
-      meta: {showBottomTabBar: true},
-      component: Recommend
-    },
-    {
-      path: '/mine',
-      meta: {showBottomTabBar: true},
-      component: Mine
-    },
-    {
-      path: '/chat',
-      meta: {showBottomTabBar: true},
-      component: Chat
-    },
-    {
-      path: '/search',
-      meta: {showBottomTabBar: true},
-      component: Search
-    },
-    {
-      path: '/login',
-      meta: {showBottomTabBar: false},
-      component: Login
-    },
-    {
-      path: '/setting',
-      component: Setting
-    },
-    {
-      path: '/detail',
-      component: MeDetail
-    }
-  ]
+    routes: [{
+            path: '/',
+            meta: { showBottomTabBar: true },
+            redirect: '/home'
+        },
+        {
+            path: '/home',
+            component: Home,
+            children: [
+                { path: 'hot', component: Hot, meta: { showBottomTabBar: true } },
+                { path: 'box', component: Box },
+                { path: 'dress', component: Dress },
+                { path: 'food', component: Food },
+                { path: 'general', component: General },
+                { path: 'man', component: Man },
+                { path: 'ele', component: Ele },
+                { path: 'mbaby', component: Mbaby },
+                { path: 'shirt', component: Shirt },
+                { path: '/home', redirect: '/home/hot' }
+            ]
+        },
+        {
+            path: '/recommend',
+            meta: { showBottomTabBar: true },
+            component: Recommend
+        },
+        {
+            path: '/mine',
+            meta: { showBottomTabBar: true },
+            component: Mine
+        },
+        {
+            path: '/chat',
+            meta: { showBottomTabBar: true },
+            component: Chat
+        },
+        {
+            path: '/search',
+            meta: { showBottomTabBar: true },
+            component: Search
+        },
+        {
+            path: '/login',
+            meta: { showBottomTabBar: false },
+            component: Login
+        },
+        {
+            path: '/setting',
+            component: Setting
+        },
+        {
+            path: '/detail',
+            component: MeDetail
+        }
+    ]
 })
-
-
