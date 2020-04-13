@@ -91,12 +91,12 @@
       // 修改用户信息
       async saveUserInfo() {
         // 请求接口
-        let result = await changeUserInfo(this.userInfo.id, this.user_name, this.user_sex, this.user_address, this.user_birthday, this.user_phone, this.user_sign)
+        let result = await changeUserInfo(this.userInfo._id, this.user_name, this.user_sex, this.user_address, this.user_birthday, this.userInfo.user_phone, this.user_sign)
         // console.log(result)
         Toast({message: result.message,position: 'bottom',duration: 2000});
         if (result.success_code === 200) {
           // 更新本地数据
-          this.$store.dispatch('getUserInfo',this.userInfo.id)
+          this.$store.dispatch('getUserInfo',this.userInfo._id)
           // Back Main
           setTimeout(() => {
             this.$router.replace('/mine')

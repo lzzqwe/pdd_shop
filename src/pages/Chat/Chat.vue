@@ -1,5 +1,5 @@
 <template>
-  <div v-if="userInfo.id">
+  <div v-if="userInfo._id">
     <div class="chat">
       <div>
         <!--头部区域-->

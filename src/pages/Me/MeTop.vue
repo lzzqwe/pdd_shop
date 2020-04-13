@@ -2,7 +2,7 @@
   <div class="me-top">
     <router-link tag="div" class="user" to="/detail">
       <img src="./images/me_icon.png" alt="">
-      <p v-if="userInfo.phone">{{userInfo.phone| phoneFormat}}</p>
+      <p v-if="this.userInfo.user_phone">{{this.userInfo.user_phone| phoneFormat}}</p>
       <p v-else>请绑定手机号码</p>
       <i class="itlike-3"></i>
     </router-link>

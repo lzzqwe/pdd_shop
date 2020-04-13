@@ -67,8 +67,8 @@ export default {
     },
 
     // 7.异步获取用户信息
-    async getUserInfo({ commit }) {
-        const result = await getUserInfo()
+    async getUserInfo({ commit }, params) {
+        const result = await getUserInfo(params)
         console.log(result)
         if (result.success_code === 200) {
             commit(USER_INFO, { userInfo: result.message })

@@ -1,6 +1,6 @@
 <template>
   <div class="recommend-container">
-    <ul class="recommend"  v-if="recommendshoplist.length>0 && userInfo.id">
+    <ul class="recommend"  v-if="recommendshoplist.length>0 && userInfo._id">
       <ShopList tag="li"
                 v-for="(item, index) in recommendshoplist"
                 :key="index"
@@ -95,7 +95,7 @@
       // 监听商品点击
       async dealWatchBtnClick(goods) {
         // 1. 发送请求
-        let result = await addGoods2Car(this.userInfo.id,goods.goods_id,goods.goods_name,goods.thumb_url,goods.price);
+        let result = await addGoods2Car(this.userInfo._id,goods.goods_id,goods.goods_name,goods.thumb_url,goods.price);
         console.log(result)
       }
     },

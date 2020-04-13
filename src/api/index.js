@@ -29,7 +29,7 @@ export const phoneCodeLogin = (phone, code) => ajax(BASE_URL + '/api/login_code'
 export const pwdLogin = (name, pwd, captcha) => ajax(BASE_URL + '/api/login_pwd', { name, pwd, captcha }, 'POST')
 
 // 9.获取登陆的用户信息
-export const getUserInfo = () => ajax(BASE_URL + '/api/user_info')
+export const getUserInfo = (id) => ajax(BASE_URL + '/api/user_info', { id })
 
 // 10.退出登陆
 export const getLogout = () => ajax(BASE_URL + '/api/logout')
