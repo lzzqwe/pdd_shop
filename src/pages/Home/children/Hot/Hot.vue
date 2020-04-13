@@ -67,7 +67,7 @@
 
 <style scoped lang="stylus">
   .hot
-    padding-top 34px
+    padding-top 43px
     width 100%
     background #f5f5f5
     .hot-ad

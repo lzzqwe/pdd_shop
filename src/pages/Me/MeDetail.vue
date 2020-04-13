@@ -4,7 +4,7 @@
     <div class="user-detail-group">
       <div class="user-icon">
         <span>头像</span>
-        <img src="./images/me_icon.png" alt="">
+        <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1289391092,1816265651&fm=26&gp=0.jpg" alt="">
       </div>
       <div class="user-item">
         <span>手机</span>
@@ -19,11 +19,11 @@
         <span>性别</span>
         <span>{{user_sex}}</span>
       </div>
-      <div class="user-item">
+      <div class="user-item" @click="isFlag=true">
         <span>常住地</span>
         <span><input type="text" v-model="user_address"></span>
       </div>
-      <div class="user-item" @click="selectDate">
+      <div class="user-item" @click="show=true">
         <span>生日</span>
         <span>{{user_birthday}}</span>
       </div>
@@ -33,30 +33,32 @@
       </div>
       <button @click="saveUserInfo">修改</button>
     </div>
-    <!--选择性别-->
-    <mt-actionsheet
-      :actions="actions"
-      v-model="sheetVisible">
-    </mt-actionsheet>
-    <!--BirthDay-->
-    <mt-datetime-picker
-      ref="picker"
-      type="date"
-      :startDate="startDate"
-      :endDate="endDate"
-      @confirm="handleBirthDay"
-      year-format="{value} 年"
-      month-format="{value} 月"
-      date-format="{value} 日">
-    </mt-datetime-picker>
+    <van-action-sheet v-model="sheetVisible" :actions="actions" @select="onSelect" />
+    <van-popup position="bottom" v-model="show">
+      <van-datetime-picker
+       v-model="currentDate"
+       type="datetime"
+       :min-date="minDate"
+       :max-date="maxDate"
+       @confirm='confirmDate'
+       />
+    </van-popup>
+    <van-popup position="bottom" v-model="isFlag">
+      <van-area 
+      :area-list="this.areaList"
+       value="110101"
+       @confirm='confirmAddress'
+      />
+    </van-popup>
   </div>
 </template>
 
 <script>
   import moment from 'moment'
+  import areaList from 'common/js/area.js'
   import {mapState} from 'vuex'
   import {changeUserInfo} from '@/api/index'
-  import {Toast} from 'mint-ui'
+  // import {Toast} from 'mint-ui'
 
   export default {
     name: "MeDetail",
@@ -70,30 +72,45 @@
         user_birthday: '',
         // 性别
         sheetVisible: false,
+        isFlag:false,
         actions: [
-          {name: 'Man', method: this.selectSex},
-          {name: 'Woman', method: this.selectSex}],
-        // Birthday
-        startDate: new Date('1990-01-01'),
-        endDate: new Date(),
+          {name: '男' },
+          {name: '女'}],
+        show:false,
+        minDate: new Date(2020, 0, 1),
+      maxDate: new Date(2025, 10, 1),
+      currentDate: new Date()
       }
     },
     methods: {
+      confirmAddress(data) {
+        console.log(data)
+        let str = `${data[0].name}/${data[1].name}/${data[2].name}`
+       this.user_address = str
+       this.isFlag = false
+      },
+      onSelect(item){
+        // 默认情况下点击选项时不会自动收起
+      // 可以通过 close-on-click-action 属性开启自动收起
+      this.sheetVisible = false;
+       this.user_sex = item.name;
+      },
+      confirmDate(value) {
+        this.user_birthday = moment(value).format('YYYY/MM/DD');
+        this.show = false
+      },
       selectSex(props) {
         this.user_sex = props.name;
       },
       selectDate() {
         this.$refs.picker.open();
       },
-      handleBirthDay(date) {
-        this.user_birthday = moment(date).format('YYYY/MM/DD');
-      },
       // 修改用户信息
       async saveUserInfo() {
         // 请求接口
         let result = await changeUserInfo(this.userInfo._id, this.user_name, this.user_sex, this.user_address, this.user_birthday, this.userInfo.user_phone, this.user_sign)
         // console.log(result)
-        Toast({message: result.message,position: 'bottom',duration: 2000});
+        this.$toast(result.message);
         if (result.success_code === 200) {
           // 更新本地数据
           this.$store.dispatch('getUserInfo',this.userInfo._id)
@@ -111,6 +128,7 @@
       }
     },
     created() {
+      this.areaList=areaList
       this.user_sign = this.userInfo.user_sign || ''
       this.user_address = this.userInfo.user_address || ''
       this.user_name = this.userInfo.user_name || ''
@@ -160,6 +178,7 @@
         align-items center
         img
           width 50px
+          height 50px
           border-radius 50%
       .user-item
         height 40px

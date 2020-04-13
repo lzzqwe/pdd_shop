@@ -1,7 +1,7 @@
 <template>
   <div class="me-top">
     <router-link tag="div" class="user" to="/detail">
-      <img src="./images/me_icon.png" alt="">
+      <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1289391092,1816265651&fm=26&gp=0.jpg" alt="">
       <p v-if="this.userInfo.user_phone">{{this.userInfo.user_phone| phoneFormat}}</p>
       <p v-else>请绑定手机号码</p>
       <i class="itlike-3"></i>

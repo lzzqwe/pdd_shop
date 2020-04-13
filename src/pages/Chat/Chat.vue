@@ -61,7 +61,7 @@
               合计：<span class="total-price">{{totalMoney | moneyFormat(totalMoney)}}</span>
             </div>
           </div>
-          <div class="tab-bar-right">
+          <div class="tab-bar-right" @click.stop="handleAccounts">
             <a href="#" class="pay">去结算</a>
           </div>
         </div>
@@ -73,7 +73,6 @@
 
 <script>
   import {mapState} from 'vuex'
-  import {MessageBox} from 'mint-ui'
   import SelectLogin from '@/pages/Me/Login/SelectLogin'
   import {delCartGoods} from '@/api/index'
   export default {
@@ -93,9 +92,12 @@
     },
     created() {
       //请求数据
-      this.$store.dispatch('getCartGoods',this.userInfo.id);
+      this.$store.dispatch('getCartGoods',this.userInfo._id);
     },
     methods: {
+      handleAccounts() {
+        this.$toast.success(`您好 需要支付${parseFloat(this.totalMoney).toFixed(2)}元`);
+      },
       // 1.计算商品的增加和减少
       updateGoodsCount(goods,isAdd) {
         this.$store.dispatch('updateGoodsCount',{goods,isAdd});
@@ -140,17 +142,20 @@
       },
       // 6.点击删除商品
       clickTrash(goods) {
-        MessageBox.confirm('确定删除该商品？').then(action => {
-          if (action === 'confirm') {
-            this.currentDelGoods = goods;
+         this.$dialog.confirm({
+           message: '确定删除该商品？'
+         }).then(() => {
+           // on confirm
+               this.currentDelGoods = goods;
             // 删除vuex中数据
             this.$store.dispatch('delGoods',{goods});
             // 获取总价格
             this.getAllGoodsPrice();
             // 删除数据库数据
             delCartGoods(goods.goods_id)
-          }
-        })
+         }).catch(() => {
+           // on cancel
+         });;
       }
     },
     filters: {
@@ -279,6 +284,7 @@
                     width 50px
                     height 23px
                     text-align center
+                    font-size 14px
                 .shop_deal_right
                   float right
                   & > span:first-child

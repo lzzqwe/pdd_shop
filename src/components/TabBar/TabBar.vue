@@ -70,11 +70,12 @@
       flex-direction column
       align-items center
       justify-content center
-      font-size 14px
       color #666
+      font-size 12px
       img
-        width 35%
-        margin-bottom 2px
+        width 20px
+        height 20px
+        margin-bottom 5px
       .on
         color red
 </style>

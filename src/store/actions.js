@@ -48,12 +48,17 @@ export default {
         commit(HOME_SHOPLIST, { homeshoplist: result.message.goods_list })
     },
     // 4. 获取推荐商品数据
-    async reqRecommendShopList({ commit }, params) {
+    async reqRecommendShopList({ commit, state }, params) {
         console.log(params)
         const result = await getRecommendShopList(params)
+        if (!result.data.length) {
+            state.hasMore = false
+            return
+        }
         commit(RECOMMEND_SHOPLIST, { recommendshoplist: result.data })
         params.callback && params.callback()
     },
+
 
     // 5. 获取搜索商品数据
     async reqSearchGoods({ commit }) {
@@ -76,14 +81,11 @@ export default {
     },
     // 8.退出登陆
     async Logout({ commit }) {
-        // const result = await getLogout()
-        // console.log(result)
-        // if (result.success_code === 200) {
         commit(RESET_USER_INFO)
-            // }
     },
     //9.请求购物车数据
     async getCartGoods({ commit }, params) {
+        console.log(params)
         const result = await getCartGoods(params)
         if (result.success_code === 200) {
             commit(CAR_GOODS_LIST, { cargoods: result.message })

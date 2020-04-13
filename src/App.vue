@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <!-- <transition name='fade'>
-      <router-view></router-view>
-    </transition> -->
      <router-view></router-view>
     <TabBar v-show="$route.meta.showBottomTabBar" />
   </div>
@@ -14,16 +11,12 @@
   import TabBar from './components/TabBar/TabBar'
   export default {
     name: "App",
-    // created() {
-    //   this.$store.dispatch('getUserInfo')
-    // },
     created() {
      if(localStorage.getItem("ele")) {
         const decode = jwt_decode(localStorage.getItem("ele"))
         console.log(decode)
         this.syncUserInfo(decode)
      }
-      // this.$store.dispatch('getUserInfo')
     },
     methods:{
       ...mapActions(['syncUserInfo'])

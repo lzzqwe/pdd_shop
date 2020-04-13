@@ -18,8 +18,8 @@
 
 <script>
   import MeCommonCell from './MeCommonCell'
-  import {Toast, MessageBox} from 'mint-ui'
-  import {mapActions} from 'vuex'
+  // import {Toast, MessageBox} from 'mint-ui'
+  import {mapActions,mapMutations} from 'vuex'
   export default {
     name: "MeSetting",
     components: {
@@ -27,21 +27,21 @@
     },
     methods: {
       ...mapActions(['Logout']),
-      // ...mapMutations(['RESET_USER_INFO']),
       dealCellClick(props) {
-        Toast('点击了' + props)
+        this.$toast('点击了' + props)
       },
       dealLogout () {
-        MessageBox.confirm('确定退出登陆吗？').then(action => {
-          if (action === 'confirm') {
-            // 退出登陆
-            let result = this.Logout({})
+        this.$dialog.confirm({
+           message: '确定删除该商品？'
+         }).then(() => {
+                // 退出登陆
+            this.Logout()
             localStorage.removeItem('ele')
-          //  this.RESET_USER_INFO()
             // 回到主界面
             this.$router.replace('home')
-          }
-        })
+         }).catch(() => {
+           // on cancel
+         });;
       }
     }
   }
