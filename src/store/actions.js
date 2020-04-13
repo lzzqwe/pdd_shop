@@ -83,8 +83,8 @@ export default {
             // }
     },
     //9.请求购物车数据
-    async getCartGoods({ commit }) {
-        const result = await getCartGoods()
+    async getCartGoods({ commit }, params) {
+        const result = await getCartGoods(params)
         if (result.success_code === 200) {
             commit(CAR_GOODS_LIST, { cargoods: result.message })
         }

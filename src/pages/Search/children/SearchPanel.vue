@@ -51,7 +51,6 @@
       padding 0 20px
       display flex
       align-items: center
-      justify-content space-between
       width 100%
       height 60px
       // border-bottom-1px(#ddd)
@@ -59,7 +58,7 @@
         display flex
         padding 0 10px
         align-items center
-        width: 85%
+        width: 70%
         height 38px
         border-radius 8px
         background #ededed
@@ -70,10 +69,13 @@
           background inherit
           font-size 16px
           outline none
+          border none
       button
         background transparent
         font-size 16px
         color #aaa
+        border none
+        margin-left 5px
     .search-content
       padding 30px 15px
       .title
@@ -81,6 +83,7 @@
         display flex
         align-items center
         color #aaa
+        font-size 18px
       .search-list
         display flex
         flex-wrap wrap

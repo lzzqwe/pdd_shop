@@ -93,7 +93,7 @@
     },
     created() {
       //请求数据
-      this.$store.dispatch('getCartGoods');
+      this.$store.dispatch('getCartGoods',this.userInfo.id);
     },
     methods: {
       // 1.计算商品的增加和减少

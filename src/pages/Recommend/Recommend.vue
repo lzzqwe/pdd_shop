@@ -95,7 +95,7 @@
       // 监听商品点击
       async dealWatchBtnClick(goods) {
         // 1. 发送请求
-        let result = await addGoods2Car(this.userInfo._id,goods.goods_id,goods.goods_name,goods.thumb_url,goods.price);
+        let result = await addGoods2Car(this.userInfo.id,goods.goods_id,goods.goods_name,goods.thumb_url,goods.price);
         console.log(result)
       }
     },

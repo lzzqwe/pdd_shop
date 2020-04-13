@@ -49,7 +49,7 @@ export const changeUserInfo = (user_id, user_name, user_sex, user_address, user_
 export const addGoods2Car = (user_id, goods_id, goods_name, thumb_url, price) => ajax(BASE_URL + '/api/add_shop_car', { user_id, goods_id, goods_name, thumb_url, price }, 'POST')
 
 // 13.获取购物车数据
-export const getCartGoods = () => ajax(BASE_URL + '/api/car_goods')
+export const getCartGoods = (user_id) => ajax(BASE_URL + '/api/car_goods', { user_id })
 
 // 14.删除购物车数据
 export const delCartGoods = (goods_id) => ajax(BASE_URL + '/api/del_car_goods', { goods_id }, 'POST')

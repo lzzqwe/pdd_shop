@@ -62,22 +62,6 @@
     computed: {
       ...mapState(['homecasual'])
     },
-    // 深度监视
-  /*  watch: {
-      homecasual() {
-        this.$nextTick(() => {
-          // 创建swiper实例
-          new Swiper ('.swiper-container', {
-            loop: true,
-            autoplay: true,
-            // 如果需要分页器
-            pagination: {
-              el: '.swiper-pagination',
-            }
-          })
-        })
-      }
-    }*/
   }
 </script>
 
