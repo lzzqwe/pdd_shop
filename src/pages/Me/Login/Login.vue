@@ -77,7 +77,7 @@
                 type="text" maxlength="11" placeholder="验证码">
               <img
                 ref="captcha"
-                src="http://localhost:3000/api/captcha" alt="captcha"
+                src="http://localhost:8000/api/captcha" alt="captcha"
                 class="get-verification"
                 @click.prevent="getCaptcha"
               >
@@ -95,8 +95,6 @@
   import jwt_decode from "jwt-decode";
   import {getPhoneCode, phoneCodeLogin, pwdLogin} from '@/api/index'
   import {mapActions} from 'vuex'
-  import {Toast} from 'mint-ui'
-
   export default {
     name: "Login",
     data() {
@@ -128,7 +126,7 @@
       async getVerifyCode() {
         //2.0 禁止点击
         if (this.phoneRight === false) {
-          Toast('请输入正确的手机号码')
+          this.$toast('请输入正确的手机号码')
           return;
         }
         //  2.1.开启倒计时
@@ -148,11 +146,7 @@
         //  2.3获取验证码失败
         if (result.err_code === 0) {
           // 提示信息
-          Toast({
-            message: result.message,
-            position: 'center',
-            duration: 3000
-          })
+          this.$toast.fail(result.message)
         }
       },
       // 3. 密码的显示方式
@@ -161,7 +155,7 @@
       },
       // 4.获取图形验证码
       getCaptcha() {
-        this.$refs.captcha.src = 'http://localhost:3000/api/captcha?time=' + new Date()
+        this.$refs.captcha.src = 'http://localhost:8000/api/captcha?time=' + new Date()
       },
       // 5.登陆
       async login() {
@@ -169,16 +163,16 @@
         if (this.loginMode) { // 验证码登陆
           // 5.2 前台校验
           if (!this.phone) {
-            Toast("请输入手机号码")
+            this.$toast("请输入手机号码")
             return
           } else if (!this.phoneRight) {
-            Toast("请输入正确的手机号码")
+            this.$toast("请输入正确的手机号码")
             return
           } else if (!this.code) {
-            Toast("请输入验证码")
+            this.$toast("请输入验证码")
             return
           } else if (!/^\d{6}$/gi.test(this.code)) {
-            Toast("请输入正确的验证码")
+            this.$toast("请输入正确的验证码")
             return
           }
           // 5.3 手机验证码登陆
@@ -199,13 +193,13 @@
         } else { // 账号和密码登陆
           // 5.4前端校验
           if (!this.user_name) {
-            Toast('请输入用户名/手机/邮箱')
+            this.$toast('请输入用户名/手机/邮箱')
             return
           } else if (!this.pwd) {
-            Toast('请输入密码')
+            this.$toast('请输入密码')
             return
           } else if (!this.captcha) {
-            Toast('请输入验证码')
+            this.$toast('请输入验证码')
             return
           }
           //5.5用户名和密码
@@ -220,8 +214,8 @@
           }
         }
         // 6.后续处理
-        if (!this.userInfo.id) { // 失败
-          Toast(this.userInfo.message)
+        if (!this.userInfo._id) { // 失败
+          this.$toast(this.userInfo.message)
         } else { // 成功
           // 6.1 同步用户数据
           this.syncUserInfo(this.userInfo)

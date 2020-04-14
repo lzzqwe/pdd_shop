@@ -1,9 +1,8 @@
 import ajax from './ajax'
 
 // 0.基础路径
-// const BASE_URL = '/api'
-// const BASE_URL = 'http://localhost:6000'
-const BASE_URL = 'http://39.98.129.225:8000'
+const BASE_URL = 'http://localhost:8000'
+    // const BASE_URL = 'http://39.98.129.225:8000'
 
 //1. 请求首页轮播图
 export const getHomeCasual = () => ajax(BASE_URL + '/api/homecasual')
@@ -30,7 +29,7 @@ export const phoneCodeLogin = (phone, code) => ajax(BASE_URL + '/api/login_code'
 export const pwdLogin = (name, pwd, captcha) => ajax(BASE_URL + '/api/login_pwd', { name, pwd, captcha }, 'POST')
 
 // 9.获取登陆的用户信息
-export const getUserInfo = () => ajax(BASE_URL + '/api/user_info')
+export const getUserInfo = (id) => ajax(BASE_URL + '/api/user_info', { id })
 
 // 10.退出登陆
 export const getLogout = () => ajax(BASE_URL + '/api/logout')
@@ -50,7 +49,7 @@ export const changeUserInfo = (user_id, user_name, user_sex, user_address, user_
 export const addGoods2Car = (user_id, goods_id, goods_name, thumb_url, price) => ajax(BASE_URL + '/api/add_shop_car', { user_id, goods_id, goods_name, thumb_url, price }, 'POST')
 
 // 13.获取购物车数据
-export const getCartGoods = () => ajax(BASE_URL + '/api/car_goods')
+export const getCartGoods = (user_id) => ajax(BASE_URL + '/api/car_goods', { user_id })
 
 // 14.删除购物车数据
 export const delCartGoods = (goods_id) => ajax(BASE_URL + '/api/del_car_goods', { goods_id }, 'POST')

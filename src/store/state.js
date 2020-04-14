@@ -12,5 +12,6 @@ export default {
     // 用户数据
     userInfo: {},
     // 购物车数据
-    carGoods: []
+    carGoods: [],
+    hasMore: true
 }

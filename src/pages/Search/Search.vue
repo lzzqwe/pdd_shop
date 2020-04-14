@@ -7,7 +7,13 @@
     <!--联动列表-->
     <div class="shop">
       <!--Left-->
-      <div class="menu-wrapper" v-if="searchgoods.length > 0">
+      <scroll
+      ref="menu"
+      :data='searchgoods'
+      :probeType="probeType" 
+      class="menu-wrapper" 
+      v-if="searchgoods.length > 0"
+      >
         <ul>
           <li class="menu-item"
               v-for="(item, index) in searchgoods" :key="index"
@@ -17,10 +23,18 @@
           >{{item.name}}
           </li>
         </ul>
-      </div>
+      </scroll>
 
       <!--Right-->
-      <div class="shop-wrapper">
+      <scroll 
+      class="shop-wrapper"
+      ref='goods'
+      :data='searchgoods'
+      :probeType="probeType"
+      :listenScroll='listenScroll'
+      @onscroll='onScroll' 
+      v-if="searchgoods.length > 0"
+      >
         <ul class="shop-list" ref="shopMenu">
           <li class="shops-li" v-for="(item,shopNum) in searchgoods" :key="shopNum" ref="shopList">
             <div class="shop-title">
@@ -38,7 +52,7 @@
             </ul>
           </li>
         </ul>
-      </div>
+      </scroll>
     </div>
     <!--搜索面板-->
     <SearchPanel
@@ -51,20 +65,23 @@
 <script>
   import SearchNav from './children/SearchNav'
   import SearchPanel from './children/SearchPanel'
+  import Scroll from '@/base/scroll/scroll'
   import {mapState} from 'vuex'
-  import BScroll from 'better-scroll'
   export default {
     name: "Search",
     data() {
       return {
         scrollY: 0,
         rightTops: [],
-        isShow: false
+        isShow: false,
+        probeType:3,
+        listenScroll:true
       }
     },
     components: {
       SearchNav,
-      SearchPanel
+      SearchPanel,
+      Scroll
     },
     //1.发起数据请求
     mounted() {
@@ -83,6 +100,7 @@
       }
     },
     methods: {
+<<<<<<< HEAD
       /* 3.初始化滚动*/
       _initBScroll() {
         this.leftScroll = new BScroll('.menu-wrapper', {
@@ -95,6 +113,10 @@
         this.rightScroll.on('scroll', (pos) => {
           this.scrollY = Math.abs(pos.y)
         })
+=======
+      onScroll(pos) {
+       this.scrollY = Math.abs(pos.y)
+>>>>>>> dev
       },
       /* 5.计算rightTops高度值*/
       _initRightLiTops() {
@@ -118,13 +140,13 @@
         console.log('aa')
         console.log(index)
         this.scrollY = this.rightTops[index]
-        this.rightScroll.scrollTo(0,-this.scrollY,300)
+        this.$refs.goods.scrollTo(0,-this.scrollY,300)
       },
       /* 7.左右联动*/
       _initLeftScroll(index) {
         let menuList = this.$refs.menuList
         let el = menuList[index]
-        this.leftScroll.scrollToElement(el, 0, 0, -100)
+        this.$refs.menu.scrollToElement(el, 0, 0, -100)
       },
       /* 设置搜索面板的显示*/
       isShowSearchPanel(flag) {
@@ -135,9 +157,6 @@
       /* 4.监听滚动*/
       searchgoods() {
         this.$nextTick(() => {
-          /* 4.1 初始化*/
-          this._initBScroll()
-          /* 5.1高度监听 */
           this._initRightLiTops()
         })
       }

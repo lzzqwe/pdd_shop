@@ -1,6 +1,6 @@
 <template>
   <div class="me">
-    <div v-if="userInfo.id">
+    <div v-if="userInfo._id">
       <MeTop/>
     </div>
     <SelectLogin v-else/>
