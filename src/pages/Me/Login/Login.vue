@@ -77,7 +77,7 @@
                 type="text" maxlength="11" placeholder="验证码">
               <img
                 ref="captcha"
-                src="http://localhost:8000/api/captcha" alt="captcha"
+                src="http://39.98.129.225:8000/api/captcha" alt="captcha"
                 class="get-verification"
                 @click.prevent="getCaptcha"
               >
@@ -155,7 +155,7 @@
       },
       // 4.获取图形验证码
       getCaptcha() {
-        this.$refs.captcha.src = 'http://localhost:8000/api/captcha?time=' + new Date()
+        this.$refs.captcha.src = 'http://39.98.129.225:8000/api/captcha?time=' + new Date()
       },
       // 5.登陆
       async login() {
