@@ -1,14 +1,17 @@
 <template>
   <div class="recommend-wrapper">
-    <scroll
+    <div
       v-if="recommendshoplist.length>0 && userInfo._id"
       class="recommend-container"
-      :data="recommendshoplist"
-      :probeType="probeType"
-      :pullup="pullup"
-      @scrollToEnd="loadMore"
     >
-      <ul class="recommend">
+     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+       <van-list
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
+      >
+        <ul class="recommend">
         <ShopList
           tag="li"
           v-for="(item, index) in recommendshoplist"
@@ -17,15 +20,18 @@
           :clickCellBtn="dealWatchBtnClick"
         />
       </ul>
-    </scroll>
-    <SelectLogin v-else />
+      </van-list>
+     </van-pull-refresh>
+     
+    </div>
+     <SelectLogin v-else />
   </div>
 </template>
 
 <script>
-  import {mapState} from 'vuex'
+  import {mapState,mapMutations} from 'vuex'
   import ShopList from '@/components/ShopList/ShopList'
-  import Scroll from '@/base/scroll/scroll'
+  // import Scroll from '@/base/scroll/scroll'
   import SelectLogin from '@/pages/Me/Login/SelectLogin'
   import {addGoods2Car} from "@/api/index"
 
@@ -38,35 +44,50 @@
         top: 0,
         status: true,
         probeType:3,
-        pullup:true
+        pullup:true,
+        list: [],
+      loading: false,
+      finished: false,
+      isLoading: false
       }
     },
     components: {
       ShopList,
       SelectLogin,
-      Scroll
+      // Scroll
     },
     created() {
       this._getRecommendList()
     },
     methods: {
+       onRefresh() {
+       setTimeout(() => {
+
+        this.$store.dispatch('reqPullFresh')
+      this._getRecommendList()
+      this.$toast.success('刷新成功');
+      this.isLoading = false
+       },2000)
+       
+    },
+      onLoad() {
+      setTimeout(() => {
+       this.loadMore()
+      },2000)
+      
+    },
       _getRecommendList() {
-        this.$toast.loading({
-        message: "加载中...",
-        forbidClick: true //是否禁止背景点击
-      });
       // 获取推荐数据列表
       this.$store.dispatch('reqRecommendShopList', {
-        page: this.page, count: this.count, callback: () => {
-          this.$toast.clear()
-        }
+        page: this.page, count: this.count
       })
       },
       loadMore() {
        if(!this.hasMore) {
-          this.$toast.clear();
+          this.finished = true;
           return
        }
+       this.loading = false;
        this.page += 1;
        this._getRecommendList();
       },
@@ -75,31 +96,38 @@
         // 1. 发送请求
         let result = await addGoods2Car(this.userInfo._id,goods.goods_id,goods.goods_name,goods.thumb_url,goods.price);
         if(result) {
-          this.$toast.success('已加入购物车')
+          // this.$toast.success('已加入购物车')
+          this.$notify({ type: 'success', message: '已加入购物车' })
         } 
-      }
+      },
+       ...mapMutations(['SET_LOADING'])
     },
     computed: {
-      ...mapState(['recommendshoplist','userInfo','hasMore'])
+      ...mapState(['recommendshoplist','userInfo','hasMore','isFlag'])
     }
   }
 </script>
 
 <style scoped lang="stylus">
 .recommend-wrapper {
-  width: 100%;
-  height: 100%;
+  position fixed
+  top 0
+  bottom 50px
+  left 0
+  right 0
   .recommend-container {
     width: 100%;
     height: 100%;
     background: #f5f5f5;
-    overflow: hidden;
+    overflow: auto;
 
   .recommend {
-    padding-bottom: 50px;
     display: flex;
     flex-wrap: wrap;
     background: #f5f5f5;
+  }  
+  .loading-container {
+    text-align center
   }
 }
 }

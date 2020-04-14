@@ -5,7 +5,7 @@ import App from './App'
 import store from './store'
 
 import VConsole from 'vconsole'
-import loading from './common/images/logo.png'
+import loading from './common/images/a.jpg'
 import 'amfe-flexible'
 import '@/common/css/reset.css'
 import '@/common/css/style.css'
@@ -19,7 +19,15 @@ import {
     Lazyload,
     Toast,
     Swipe,
-    SwipeItem
+    SwipeItem,
+    Loading,
+    Icon,
+    List,
+    Cell,
+    CellGroup,
+    PullRefresh,
+    Notify,
+    Stepper
 } from 'vant';
 import router from './router/index'
 import LyTab from 'ly-tab'
@@ -34,6 +42,14 @@ Vue.use(Button)
     .use(Toast)
     .use(Swipe)
     .use(SwipeItem)
+    .use(Loading)
+    .use(Icon)
+    .use(List)
+    .use(Cell)
+    .use(CellGroup)
+    .use(PullRefresh)
+    .use(Notify)
+    .use(Stepper)
 
 // 图片懒加载
 

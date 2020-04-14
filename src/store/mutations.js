@@ -13,7 +13,7 @@ import {
     SELECT_ALL_GOODS,
     SINGLE_SELECTED,
     DEL_GOODS,
-    ADD_CART
+    RESET_SHOPLIST
 } from './mutation-types'
 
 export default {
@@ -30,6 +30,10 @@ export default {
     // 首页商品列表数据
     [HOME_SHOPLIST](state, { homeshoplist }) {
         state.homeshoplist = homeshoplist
+    },
+
+    [RESET_SHOPLIST](state) {
+        state.recommendshoplist = []
     },
 
     // 推荐商品数据列表
@@ -96,7 +100,7 @@ export default {
     [DEL_GOODS](state, { goods }) {
         const index = state.carGoods.indexOf(goods);
         state.carGoods.splice(index, 1);
-    },
+    }
 
     // // 加入购物车
     // [ADD_CART](state, {goods}) {

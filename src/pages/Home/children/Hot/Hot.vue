@@ -1,7 +1,26 @@
 <template>
   <div class="hot">
     <!--1.轮播图-->
-    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+
+
+    <van-pull-refresh v-model="isLoading" @refresh="hotRefresh">
+       <!-- <van-list
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
+      >
+        <ul class="recommend">
+        <ShopList
+          tag="li"
+          v-for="(item, index) in recommendshoplist"
+          :key="index"
+          :item="item"
+          :clickCellBtn="dealWatchBtnClick"
+        />
+      </ul>
+      </van-list> -->
+      <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="(casual,index) in homecasual" :key="index">
          <img :src="casual.imgurl" alt="" width="100%">
       </van-swipe-item>
@@ -14,6 +33,8 @@
     </div>
     <!--4.商品列表-->
     <HotShopList/>
+     </van-pull-refresh>
+    
   </div>
 </template>
 
@@ -26,6 +47,19 @@
   } from 'vuex'
   export default {
     name: "Hot",
+    data() {
+      return {
+          isLoading: false
+      }
+    },
+    methods:{
+     hotRefresh() {
+       setTimeout(() => {
+         this.$toast.success('刷新成功');
+         this.isLoading = false
+       },2000)
+     }
+    },
     components: {
       HotNav,
       HotShopList

@@ -2,7 +2,6 @@
     <div class="select-login">
       <div class="bottom">
         <img src="./images/logo1.png" alt="" width="200">
-        <h4>选择登陆方式</h4>
       </div>
       <router-link tag="button" to="/login">手机登录</router-link>
     </div>
@@ -28,21 +27,19 @@
     align-items center
     button
       height 38px
-      background #e02e24
+      background #FFBB00
       border none
       border-radius 5px
       font-size 20px
       color #fff
-      margin-top 30px
+      margin-top -50px
       width 80%
     .bottom
       position fixed
       top 130px
       left 50%
-      margin-left -100px
-      h4
-        margin-top: 40px
-        text-align center
-        font-size 20px
-        font-weight bold
+      margin-left -68.5px
+      img
+        width 137px
+        height 49px
 </style>

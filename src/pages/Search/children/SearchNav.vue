@@ -36,7 +36,7 @@
       align-items center
       width 90%
       height 70%
-      background-color: #f8f8f8;
+      background-color: #ededed;
       border-radius 10px
       img
         width 15px

@@ -3,16 +3,15 @@
     <!--登陆面板内容部分-->
     <div class="login-inner">
       <!--面板头部-->
-      <div class="login-header">
+      <!-- <div class="login-header">
         <div class="login-logo">
           <img src="./images/logo1.png" alt="" width="250">
         </div>
-        <!--面板标题-->
         <div class="login-header-title">
           <a href="javascript:;" :class="{current: loginMode}" @click="dealLoginMode(true)">短信登陆</a>
           <a href="javascript:;" :class="{current: !loginMode}" @click="dealLoginMode(false)">密码登陆</a>
         </div>
-      </div>
+      </div> -->
       <!--面板表单部分-->
       <div class="login-content">
         <form>
@@ -38,14 +37,14 @@
             <section class="login-verification">
               <input type="tel" maxlength="8" placeholder="验证码" v-model="code">
             </section>
-            <section class="login-hint">
-              温馨提示: 未注册撩课账号的手机号,登陆时将自动注册,且代表已同意
+            <!-- <section class="login-hint">
+              已阅读并同意
               <a href="javascript:;">服务协议与隐私政策</a>
-            </section>
+            </section> -->
           </div>
 
           <!--账号登陆部分-->
-          <div :class="{current: !loginMode}">
+          <!-- <div :class="{current: !loginMode}">
             <section class="login-message">
               <input
                 v-model="user_name"
@@ -82,10 +81,17 @@
                 @click.prevent="getCaptcha"
               >
             </section>
-          </div>
-          <button class="login-submit" @click.prevent="login">登陆</button>
+          </div> -->
+          <van-button class="login-submit" type="primary" size="large" @click.prevent="login">同意协议并登录</van-button>
+          <van-button class="login-back" plain hairline type="primary" size="large" @click="$router.back()">返回</van-button>
+          <!-- <button class="login-submit" @click.prevent="login">登陆</button> -->
+          <!-- <button class="login-back" @click="$router.back()">返回</button> -->
+          <section class="login-hint">
+              已阅读并同意
+              <a href="javascript:;">服务协议与隐私政策</a>
+            </section>
         </form>
-        <button class="login-back" @click="$router.back()">返回</button>
+        
       </div>
     </div>
   </div>
@@ -217,6 +223,10 @@
         if (!this.userInfo._id) { // 失败
           this.$toast(this.userInfo.message)
         } else { // 成功
+          this.$toast.loading({
+            message: '加载中...',
+            forbidClick: true,
+          });
           // 6.1 同步用户数据
           this.syncUserInfo(this.userInfo)
           // 6.2 回到主界面
@@ -230,13 +240,15 @@
 <style scoped lang="stylus">
   // @import "~common/stylus/mixins.styl"
   .login-container
-    width 100%
-    height 100%
+    position fixed
+    top 0
+    left 0
+    bottom 0
+    right 0
     background #f5f5f5
     .login-inner
-      padding-top 60px
-      margin 0 auto
-      width 80%
+      margin-top -18px
+      width 100%
       .login-header
         .login-logo
           font-size: 40px
@@ -304,34 +316,34 @@
                   display none
                 img.on
                   display block
-            .login-hint
-              margin-top 12px
-              font-size 12px
-              line-height: 20px
-              color #999
-              > a
-                color #f44739
           .login-submit
             display: block
-            width 100%
+            width 95%
             height 42px
-            margin-top: 30px;
+            // margin-top: 30px;
             border-radius 4px
-            background: #f44739
             text-align: center
             font-size: 16px
             line-height 42px
             color #fff
-        .login-back
-          display block
-          width 100%
-          height 42px
-          margin-top 15px
-          border-radius 4px
-          background transparent
-          border 1px solid #f44739
-          text-align: center
-          font-size: 16px
-          line-height: 42px
-          color #f44739
+            margin 15px auto
+          .login-back
+            display block
+            width 95%
+            height 42px
+            border-radius 4px
+            background transparent
+            border 1px solid #f44739
+            text-align: center
+            font-size: 16px
+            line-height: 42px
+            color #f44739
+            margin 15px auto
+          .login-hint
+            margin-left 12px
+            font-size 12px
+            line-height: 20px
+            color #999
+            > a
+              color #f44739  
 </style>
