@@ -16,7 +16,6 @@
         "ly-tab": "^2.1.0",
         "moment": "^2.22.2",
         "postcss-pxtorem": "^4.0.1",
-        "swiper": "^4.4.1",
         "vant": "^2.6.0",
         "vconsole": "^3.2.2",
         "vue": "^2.6.11",

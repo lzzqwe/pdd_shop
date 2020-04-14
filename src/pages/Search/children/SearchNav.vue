@@ -1,8 +1,8 @@
 <template>
   <div class="search-nav">
     <a class="search-nav-icon" @click.prevent="isShowSearchPanel(true)">
-      <img src="../images/search.png" alt="" width="25">
-      <span>撩课学院</span>
+      <img src="../images/search.png" alt="">
+      <span>饭店装饰画</span>
     </a>
   </div>
 </template>
@@ -38,9 +38,13 @@
       height 70%
       background-color: #f8f8f8;
       border-radius 10px
+      img
+        width 15px
+        height 15px
       span
         margin-left 6px
         font-size 18px
         color #999
         font-weight lighter
+        font-size 14px
 </style>

@@ -17,13 +17,24 @@ import {
     Area,
     Dialog,
     Lazyload,
-    Toast
+    Toast,
+    Swipe,
+    SwipeItem
 } from 'vant';
 import router from './router/index'
 import LyTab from 'ly-tab'
 
 Vue.use(LyTab)
-Vue.use(Button).use(Popup).use(DatetimePicker).use(ActionSheet).use(Area).use(Dialog).use(Toast);
+Vue.use(Button)
+    .use(Popup)
+    .use(DatetimePicker)
+    .use(ActionSheet)
+    .use(Area)
+    .use(Dialog)
+    .use(Toast)
+    .use(Swipe)
+    .use(SwipeItem)
+
 // 图片懒加载
 
 Vue.use(Lazyload, {

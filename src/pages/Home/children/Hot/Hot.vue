@@ -1,14 +1,11 @@
 <template>
   <div class="hot">
     <!--1.轮播图-->
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide" v-for="(casual,index) in homecasual" :key="index">
-          <img :src="casual.imgurl" alt="" width="100%">
-        </div>
-      </div>
-      <div class="swiper-pagination"></div>
-    </div>
+    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+      <van-swipe-item v-for="(casual,index) in homecasual" :key="index">
+         <img :src="casual.imgurl" alt="" width="100%">
+      </van-swipe-item>
+    </van-swipe>
     <!--2.中间导航 -->
     <HotNav/>
     <!--3.广告位-->
@@ -21,8 +18,6 @@
 </template>
 
 <script>
-  import Swiper from 'swiper'
-  import 'swiper/dist/css/swiper.min.css'
   import HotNav from './HotNav'
   import HotShopList from './HotShopList'
 
@@ -37,23 +32,7 @@
     },
     mounted() {
       // 1. 获取首页的轮播图
-      this.$store.dispatch('reqHomeCasual',() => {
-        this.$nextTick(() => {
-          // 创建swiper实例
-          new Swiper ('.swiper-container', {
-            loop: true,
-            autoplay: {
-							delay:3000,
-							disableOnInteraction: false,
-							stopOnLastSlide:false
-						},
-            // 如果需要分页器
-            pagination: {
-              el: '.swiper-pagination',
-            },
-          })
-        })
-      })
+      this.$store.dispatch('reqHomeCasual')
       // 2. 获取首页nav
       this.$store.dispatch('reqHomeNav')
       // 3. 获取首页商品列表数据
@@ -70,6 +49,9 @@
     padding-top 43px
     width 100%
     background #f5f5f5
+    .my-swipe
+      padding-bottom 38.4%
+      height 0
     .hot-ad
       margin 8px 0
       padding 5px

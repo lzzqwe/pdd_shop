@@ -30,11 +30,10 @@ import {
 
 export default {
     // 1. 获取首页轮播图
-    async reqHomeCasual({ commit }, callback) {
+    async reqHomeCasual({ commit }) {
         const result = await getHomeCasual()
         console.log(result)
         commit(HOME_CASUAL, { homecasual: result.message })
-        callback && callback()
     },
     // 2.获取首页导航
     async reqHomeNav({ commit }) {

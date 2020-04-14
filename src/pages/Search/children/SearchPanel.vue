@@ -3,7 +3,7 @@
     <div class="search-nav">
       <div class="search-input">
         <img src="../images/search.png" alt="" width="25">
-        <input ref="mySearch" type="search" placeholder="撩课学院">
+        <input ref="mySearch" type="search" placeholder="饭店装饰画">
       </div>
       <button @click="isShowSearchPanel(false)">取消</button>
     </div>
@@ -62,12 +62,15 @@
         height 38px
         border-radius 8px
         background #ededed
+        img
+          width 15px
+          height 15px
         input
           padding-left 10px
           width 90%
           height 90%
           background inherit
-          font-size 16px
+          font-size 14px
           outline none
           border none
       button
