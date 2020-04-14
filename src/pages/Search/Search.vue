@@ -100,23 +100,8 @@
       }
     },
     methods: {
-<<<<<<< HEAD
-      /* 3.初始化滚动*/
-      _initBScroll() {
-        this.leftScroll = new BScroll('.menu-wrapper', {
-          click: true
-        })
-        this.rightScroll = new BScroll('.shop-wrapper', {
-          probeType: 3 // 6.1 监听滚动事件
-        })
-        /* 6.监听右侧滑动事件 */
-        this.rightScroll.on('scroll', (pos) => {
-          this.scrollY = Math.abs(pos.y)
-        })
-=======
       onScroll(pos) {
        this.scrollY = Math.abs(pos.y)
->>>>>>> dev
       },
       /* 5.计算rightTops高度值*/
       _initRightLiTops() {
