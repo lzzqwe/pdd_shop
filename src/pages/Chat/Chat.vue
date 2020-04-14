@@ -33,11 +33,11 @@
                   <a href="">{{goods.goods_name}}</a>
                   <p class="shop_price">{{goods.price / 100 | moneyFormat(goods.price)}}</p>
                   <div class="shop_deal">
-                    <div class="shop_deal_left">
-                      <span @click="updateGoodsCount(goods,false)">-</span>
-                      <input disabled type="tel" value="1" v-model="goods.buy_count">
-                      <span @click.stop="updateGoodsCount(goods,true)">+</span>
-                    </div>
+                    <van-stepper 
+                    v-model="goods.buy_count" 
+                    @plus='updateGoodsCount(goods,true)'
+                    @minus='updateGoodsCount(goods,false)'
+                    />
                     <div class="shop_deal_right" @click.stop="clickTrash(goods)">
                       <span></span>
                       <span></span>
@@ -82,6 +82,7 @@
         isSelectAll: false,   // 是否选中所有商品
         totalMoney: 0, // 总价格
         currentDelGoods: {}, // 当前删除商品
+        value:1
       }
     },
     components: {

@@ -1,21 +1,19 @@
 // 1. 引入模块
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
-import Home from '@/pages/Home/Home'
-import Recommend from '@/pages/Recommend/Recommend'
-import Chat from '@/pages/Chat/Chat'
-import Mine from '@/pages/Me/Me'
-import Search from '@/pages/Search/Search'
-import Login from '@/pages/Me/Login/Login'
-
 // 路由缓存
-// const Home = () => import('@/pages/Home/Home')
-// const Recommend = () => import('@/pages/Recommend/Recommend')
-// const Chat = () => import('@/pages/Chat/Chat')
-// const Mine = () => import('@/pages/Me/Me')
-// const Search = () => import('@/pages/Search/Search')
-// const Login = () => import('@/pages/Me/Login/Login')
+const Home = () =>
+    import ('@/pages/Home/Home')
+const Recommend = () =>
+    import ('@/pages/Recommend/Recommend')
+const Chat = () =>
+    import ('@/pages/Chat/Chat')
+const Mine = () =>
+    import ('@/pages/Me/Me')
+const Search = () =>
+    import ('@/pages/Search/Search')
+const Login = () =>
+    import ('@/pages/Me/Login/Login')
 
 
 import Hot from '@/pages/Home/children/Hot/Hot'

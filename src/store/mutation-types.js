@@ -1,5 +1,5 @@
-export const HOME_CASUAL = 'home_casual'  // 首页轮播图
-export const HOME_NAV = 'home_nav'  // 获取首页nav
+export const HOME_CASUAL = 'home_casual' // 首页轮播图
+export const HOME_NAV = 'home_nav' // 获取首页nav
 export const HOME_SHOPLIST = 'home_shoplist' // 获取首页商品列表数据
 export const RECOMMEND_SHOPLIST = 'recommend_shoplist' // 推荐商品数据列表
 export const SEARCH_GOODS = 'search_goods' // 搜索商品列表
@@ -12,3 +12,4 @@ export const SELECT_ALL_GOODS = 'select_all_goods' // 是否选中所有的商�
 export const SINGLE_SELECTED = 'single_selected' // 单个商品的选中
 export const DEL_GOODS = 'del_goods' // 删除单个商品
 export const ADD_CART = 'add_cart' // 加入购物车
+export const RESET_SHOPLIST = 'RESET_SHOPLIST'

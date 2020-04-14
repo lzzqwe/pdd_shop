@@ -1,11 +1,12 @@
 <template>
   <div class="searchPanel">
     <div class="search-nav">
+      <van-icon @click="isShowSearchPanel(false)" name="arrow-left" />
       <div class="search-input">
         <img src="../images/search.png" alt="" width="25">
         <input ref="mySearch" type="search" placeholder="饭店装饰画">
       </div>
-      <button @click="isShowSearchPanel(false)">取消</button>
+      <button>搜索</button>
     </div>
     <div class="search-content">
       <div class="title">
@@ -48,11 +49,13 @@
     background #fff
     z-index 1000
     .search-nav
-      padding 0 20px
       display flex
       align-items: center
       width 100%
       height 60px
+      .van-icon
+        font-size 25px
+        font-weight normal !important
       // border-bottom-1px(#ddd)
       .search-input
         display flex

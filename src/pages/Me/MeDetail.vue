@@ -58,8 +58,6 @@
   import areaList from 'common/js/area.js'
   import {mapState} from 'vuex'
   import {changeUserInfo} from '@/api/index'
-  // import {Toast} from 'mint-ui'
-
   export default {
     name: "MeDetail",
     data() {

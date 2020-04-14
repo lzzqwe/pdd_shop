@@ -53,6 +53,9 @@
           </li>
         </ul>
       </scroll>
+      <div class="loading-container" v-show="!searchgoods.length">
+        <van-loading type="spinner" color="#1989fa" />
+      </div>
     </div>
     <!--搜索面板-->
     <SearchPanel
@@ -225,4 +228,12 @@
             p
               color #555
               font-size 14px
+      .loading-container
+        position fixed
+        top 50%
+        left 50%
+        width 20px
+        height 20px
+        margin-left -10px
+        margin-top -10px        
 </style>

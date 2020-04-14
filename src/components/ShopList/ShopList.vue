@@ -29,8 +29,8 @@
 
 <style scoped lang="stylus">
   .recommend-item
-    padding-bottom 15px
-    margin-bottom 15px
+    padding-bottom 6px
+    margin-bottom 3px
     width 185.6px
     background #f5f5f5
     &:nth-child(2n-1)
@@ -41,7 +41,7 @@
       height 20px
       line-height 20px
       font-size 13px
-      font-weight lighter
+      font-weight height 
       overflow hidden
     .item-bottom
       padding 0 6px

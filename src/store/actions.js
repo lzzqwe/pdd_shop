@@ -25,7 +25,8 @@ import {
     SELECT_ALL_GOODS,
     SINGLE_SELECTED,
     DEL_GOODS,
-    ADD_CART
+    ADD_CART,
+    RESET_SHOPLIST
 } from './mutation-types'
 
 export default {
@@ -116,5 +117,8 @@ export default {
     // 14.加入购物车数据
     addCart({ commit }, { goods }) {
         commit(ADD_CART, { goods })
+    },
+    reqPullFresh({ commit }) {
+        commit(RESET_SHOPLIST)
     }
 }
