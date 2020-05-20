@@ -7,9 +7,6 @@
       @change="handleChange"
       class="fixed"
     ></ly-tab>
-    <!-- <transition name='fade'>
-      <router-view></router-view>
-    </transition>   -->
       <router-view></router-view>
   </div>
 </template>
@@ -36,7 +33,15 @@
         },
         // 二级路由路径
         subRouterUrl:[
-          '/home/hot','/home/dress','/home/box','/home/man','/home/ele','/home/food','/home/general','/home/mbaby','/home/shirt'
+          '/home/hot',
+          '/home/dress',
+          '/home/box',
+          '/home/man',
+          '/home/ele',
+          '/home/food',
+          '/home/general',
+          '/home/mbaby',
+          '/home/shirt'
         ]
       }
     },
@@ -65,5 +70,5 @@
       opacity 0
       transform translateX(-100%)
     .fade-enter-active,.fade-leave-active
-      transition all 0.4s ease      
+      transition all 0.4s ease
 </style>

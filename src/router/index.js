@@ -27,6 +27,7 @@ import Mbaby from '@/pages/Home/children/Mbaby'
 import Shirt from '@/pages/Home/children/Shirt'
 import Setting from '@/pages/Me/MeSetting'
 import MeDetail from '@/pages/Me/MeDetail'
+import GoodDetail from '@/pages/GoodDetail/GoodDetail'
 
 
 // 2.声明引用
@@ -86,6 +87,10 @@ export default new VueRouter({
         {
             path: '/detail',
             component: MeDetail
+        },
+        {
+            path: '/goods',
+            component: GoodDetail
         }
     ]
 })

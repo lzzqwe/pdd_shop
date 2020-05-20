@@ -82,8 +82,17 @@
               >
             </section>
           </div> -->
-          <van-button class="login-submit" type="primary" size="large" @click.prevent="login">同意协议并登录</van-button>
-          <van-button class="login-back" plain hairline type="primary" size="large" @click="$router.back()">返回</van-button>
+          <van-button 
+          class="login-submit" 
+          type="primary" 
+          size="large" 
+          @click.prevent="login"
+          >同意协议并登录</van-button>
+          <van-button 
+          class="login-back" 
+          plain hairline type="primary" 
+          size="large" 
+          @click="$router.back()">返回</van-button>
           <!-- <button class="login-submit" @click.prevent="login">登陆</button> -->
           <!-- <button class="login-back" @click="$router.back()">返回</button> -->
           <section class="login-hint">
@@ -137,7 +146,8 @@
         }
         //  2.1.开启倒计时
         if (this.phoneRight) {
-          this.countDown = 30
+          this.$toast('移动端 查看验证码可以点击vconsole查看  pc端打开控制台查看')
+          this.countDown = 60
           //2.2设置定时器
           this.intervalId = setInterval(() => {
             this.countDown--
@@ -159,10 +169,10 @@
       dealPwdMode(flag) {
         this.pwdMode = flag
       },
-      // 4.获取图形验证码
-      getCaptcha() {
-        this.$refs.captcha.src = 'http://39.98.129.225:8000/api/captcha?time=' + new Date()
-      },
+      // // 4.获取图形验证码
+      // getCaptcha() {
+      //   this.$refs.captcha.src = 'http://39.98.129.225:8000/api/captcha?time=' + new Date()
+      // },
       // 5.登陆
       async login() {
         // 5.1登陆模式

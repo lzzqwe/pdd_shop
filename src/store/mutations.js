@@ -62,6 +62,8 @@ export default {
 
     // 增加购物车数据
     [ADD_GOODS_LIST](state, { goods }) {
+        // console.log(goods)
+        // state.carGoods = goods
         goods.buy_count++;
     },
     // 减少购物车数据

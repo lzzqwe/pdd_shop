@@ -1,7 +1,7 @@
 <template>
   <div class="recommend-wrapper">
     <div
-      v-if="recommendshoplist.length>0 && userInfo._id"
+      v-if="recommendshoplist.length>0"
       class="recommend-container"
     >
      <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
@@ -24,7 +24,7 @@
      </van-pull-refresh>
      
     </div>
-     <SelectLogin v-else />
+     <!-- <SelectLogin v-else /> -->
   </div>
 </template>
 
@@ -32,7 +32,7 @@
   import {mapState,mapMutations} from 'vuex'
   import ShopList from '@/components/ShopList/ShopList'
   // import Scroll from '@/base/scroll/scroll'
-  import SelectLogin from '@/pages/Me/Login/SelectLogin'
+  // import SelectLogin from '@/pages/Me/Login/SelectLogin'
   import {addGoods2Car} from "@/api/index"
 
   export default {
@@ -53,22 +53,21 @@
     },
     components: {
       ShopList,
-      SelectLogin,
+      // SelectLogin,
       // Scroll
     },
-    created() {
+    mounted() {
       this._getRecommendList()
     },
     methods: {
        onRefresh() {
        setTimeout(() => {
 
-        this.$store.dispatch('reqPullFresh')
+      this.$store.dispatch('reqPullFresh')
       this._getRecommendList()
       this.$toast.success('刷新成功');
       this.isLoading = false
-       },2000)
-       
+       },2000)   
     },
       onLoad() {
       setTimeout(() => {
@@ -93,8 +92,9 @@
       },
       // 监听商品点击
       async dealWatchBtnClick(goods) {
-        // 1. 发送请求
-        let result = await addGoods2Car(this.userInfo._id,goods.goods_id,goods.goods_name,goods.thumb_url,goods.price);
+        console.log(goods)
+        // // 1. 发送请求
+        let result = await addGoods2Car(this.userInfo._id,goods.tradeItemId,goods.title,goods.img,goods.price);
         if(result) {
           // this.$toast.success('已加入购物车')
           this.$notify({ type: 'success', message: '已加入购物车' })

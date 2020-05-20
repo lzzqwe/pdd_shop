@@ -1,9 +1,13 @@
 import ajax from './ajax'
 
 // 0.基础路径
-// const BASE_URL = 'http://localhost:8000'
-const BASE_URL = 'http://39.98.129.225:8000'
-
+let BASE_URL = ''
+const env = process.env.NODE_ENV
+if(env === 'development') {
+  BASE_URL = 'http://localhost:8000'
+} else if(env === 'production') {
+  BASE_URL = 'http://39.98.129.225:8000'
+}
 //1. 请求首页轮播图
 export const getHomeCasual = () => ajax(BASE_URL + '/api/homecasual')
 

@@ -33,8 +33,8 @@
                   <a href="">{{goods.goods_name}}</a>
                   <p class="shop_price">{{goods.price / 100 | moneyFormat(goods.price)}}</p>
                   <div class="shop_deal">
-                    <van-stepper 
-                    v-model="goods.buy_count" 
+                    <van-stepper
+                    v-model="goods.buy_count"
                     @plus='updateGoodsCount(goods,true)'
                     @minus='updateGoodsCount(goods,false)'
                     />
@@ -93,7 +93,10 @@
     },
     created() {
       //请求数据
-      this.$store.dispatch('getCartGoods',this.userInfo._id);
+      if(this.userInfo && this.userInfo._id) {
+        this.$store.dispatch('getCartGoods',this.userInfo._id);
+      }
+
     },
     methods: {
       handleAccounts() {
@@ -101,8 +104,9 @@
       },
       // 1.计算商品的增加和减少
       updateGoodsCount(goods,isAdd) {
+        console.log(goods)
         this.$store.dispatch('updateGoodsCount',{goods,isAdd});
-        // 计算总价
+        // // 计算总价
         this.getAllGoodsPrice();
       },
       // 2.是否全部选中

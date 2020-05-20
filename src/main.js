@@ -4,7 +4,7 @@ import App from './App'
 
 import store from './store'
 
-import VConsole from 'vconsole'
+// import VConsole from 'vconsole'
 import loading from './common/images/a.jpg'
 import 'amfe-flexible'
 import '@/common/css/reset.css'
@@ -58,7 +58,7 @@ Vue.use(Lazyload, {
     loading: loading,
     attempt: 1
 });
-Vue.prototype.$vconsole = new VConsole();
+// Vue.prototype.$vconsole = new VConsole();
 new Vue({
     el: '#app',
     router,

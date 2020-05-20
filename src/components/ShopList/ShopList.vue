@@ -1,15 +1,11 @@
 <template>
-  <li class="recommend-item">
-    <img v-lazy="item.thumb_url" alt="" width="100%" v-if="item.thumb_url">
-    <h4 class="item-title">{{item.short_name}}</h4>
+  <li @click="handleSet(item)" class="recommend-item">
+    <img v-lazy="item.img" alt="" width="100%" v-if="item.img">
+    <h4 class="item-title">{{item.title}}</h4>
     <div class="item-bottom">
-      <span class="item-price">¥{{item.price/100}}</span>
+      <span class="item-price">¥{{item.price}}</span>
       <span class="item-sales">{{item.sales_tip}}</span>
-      <button class="item-btn" v-if="true" @click="clickCellBtn(item)">加入购物车</button>
-      <span v-else class="item-user">
-        <img src="http://t20img.yangkeduo.com/a/7bb7677358604fcc75c86f37a2a567cfa1107684-1534773680?imageMogr2/thumbnail/100x" alt="">
-        <img src="http://t20img.yangkeduo.com/a/7bb7677358604fcc75c86f37a2a567cfa1107684-1534773680?imageMogr2/thumbnail/100x" alt="">
-      </span>
+      <button class="item-btn" @click.stop="clickCellBtn(item)">加入购物车</button>
     </div>
   </li>
 </template>
@@ -22,6 +18,11 @@
       clickCellBtn: {
         type: Function,
         default: () =>{}
+      }
+    },
+    methods:{
+      handleSet(item) {
+        this.$router.push(`/goods?id=${item.tradeItemId}`)
       }
     }
   }

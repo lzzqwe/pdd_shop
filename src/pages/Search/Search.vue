@@ -10,8 +10,8 @@
       <scroll
       ref="menu"
       :data='searchgoods'
-      :probeType="probeType" 
-      class="menu-wrapper" 
+      :probeType="probeType"
+      class="menu-wrapper"
       v-if="searchgoods.length > 0"
       >
         <ul>
@@ -26,13 +26,13 @@
       </scroll>
 
       <!--Right-->
-      <scroll 
+      <scroll
       class="shop-wrapper"
       ref='goods'
       :data='searchgoods'
       :probeType="probeType"
       :listenScroll='listenScroll'
-      @onscroll='onScroll' 
+      @onscroll='onScroll'
       v-if="searchgoods.length > 0"
       >
         <ul class="shop-list" ref="shopMenu">
@@ -96,23 +96,32 @@
       /*6.绑定索引值*/
       curIndex() {
         const {scrollY, rightTops} = this
+
         return rightTops.findIndex((el, index) => {
+
           this._initLeftScroll(index)
+
           return scrollY >= el && scrollY < rightTops[index + 1]
         })
       }
     },
     methods: {
       onScroll(pos) {
+
        this.scrollY = Math.abs(pos.y)
+
       },
       /* 5.计算rightTops高度值*/
       _initRightLiTops() {
-        const tempArr = []
+
+        let tempArr = []
+
         let top = 0
+
         tempArr.push(top)
         // 3. 取出所有的li
         let allLis = this.$el.getElementsByClassName('shops-li');
+        // aliLis 是伪数组  Array.prototype.slice.call(allLis) 是转为真正的数组
         Array.prototype.slice.call(allLis).forEach((li, index) => {
           // 判断
           if(index === allLis.length - 1){
@@ -125,8 +134,6 @@
       },
       /* 6.点击左侧切换右侧*/
       clickLeftItem(index) {
-        console.log('aa')
-        console.log(index)
         this.scrollY = this.rightTops[index]
         this.$refs.goods.scrollTo(0,-this.scrollY,300)
       },
@@ -235,5 +242,5 @@
         width 20px
         height 20px
         margin-left -10px
-        margin-top -10px        
+        margin-top -10px
 </style>

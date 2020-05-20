@@ -13,8 +13,10 @@
     name: "App",
     created() {
      if(localStorage.getItem("ele")) {
+       // 解析 localStorage中存储的数据
         const decode = jwt_decode(localStorage.getItem("ele"))
         console.log(decode)
+       // 同步用户的数据
         this.syncUserInfo(decode)
      }
     },
@@ -39,5 +41,5 @@
       opacity 0
       transform translateX(-100%)
     .fade-enter-active,.fade-leave-active
-      transition all 0.5s ease    
+      transition all 0.5s ease
 </style>
